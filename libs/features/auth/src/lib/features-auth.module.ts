@@ -8,9 +8,13 @@ import { IsLoggedIn } from './guards/auth.guard';
 //components
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthRoutingModule } from './features-auth-routing.module';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule
+  ],
   declarations: [LoginComponent, RegisterComponent],
 })
 export class FeaturesAuthModule {
