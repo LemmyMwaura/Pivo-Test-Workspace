@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@pivo-test-workspace/elements/form/home": [
+        "libs/elements/form/home/src/index.ts"
+      ],
+      "@pivo-test-workspace/features/auth": ["libs/features/auth/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
