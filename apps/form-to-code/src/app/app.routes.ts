@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { AuthGuard } from '@pivo-test-workspace/features/auth';
+import { IsLoggedIn } from '@pivo-test-workspace/features/auth';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -10,7 +10,7 @@ export const appRoutes: Route[] = [
       import('@pivo-test-workspace/elements/form/home').then(
         (m) => m.ElementsFormHomeModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [IsLoggedIn],
   },
 
   {

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 //guards & services
 import { AuthService } from './providers/auth.service';
-import { AuthGuard } from './guards/auth.guard';
+import { IsLoggedIn } from './guards/auth.guard';
 
 //components
 import { LoginComponent } from './components/login/login.component';
@@ -17,7 +17,7 @@ export class FeaturesAuthModule {
   static forRoot(): ModuleWithProviders<FeaturesAuthModule> {
     return {
       ngModule: FeaturesAuthModule,
-      providers: [AuthGuard, AuthService],
+      providers: [IsLoggedIn, AuthService],
     };
   }
 }
