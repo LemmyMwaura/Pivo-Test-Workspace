@@ -1,7 +1,8 @@
-import { Route } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { IsLoggedIn } from '@pivo-test-workspace/features/auth';
 
-export const appRoutes: Route[] = [
+export const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   {
@@ -21,3 +22,14 @@ export const appRoutes: Route[] = [
       ),
   },
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(appRoutes, {
+    initialNavigation: 'enabledBlocking',
+    enableTracing: true,
+    preloadingStrategy: PreloadAllModules,
+  })],
+  
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
