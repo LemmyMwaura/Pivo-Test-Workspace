@@ -2,31 +2,22 @@
   <!-- Background -->
   <img class="vector" [src]="getVector()" alt="vector-image">
   <div class="ellipse">
-    <img class="ellipse--one" [src]="getEllipseSmall()" alt="ellipse-image"/>
-    <img class="ellipse--two" [src]="getEllipseSmaller()" alt="ellipse-image"/>
-    <img class="ellipse--three" [src]="getEllipseSmallest()"  alt="ellipse-image"/>
+    <img class="ellipse--one" [src]="getEllipseSmall()" alt="ellipse-image" />
+    <img class="ellipse--two" [src]="getEllipseSmaller()" alt="ellipse-image" />
+    <img class="ellipse--three" [src]="getEllipseSmallest()" alt="ellipse-image" />
   </div>
   <!-- End Background -->
 
-  <!-- Form Section -->
+  <!-- Login & Registration Section -->
   <div class="cart-container">
-    <img class="cart" [src]="getCart()" alt="cart-image"/>
+    <img class="cart" [src]="getCart()" alt="cart-image" />
+    <div *ngIf="isLogin; else showRegistration">
+      <pivo-test-workspace-login></pivo-test-workspace-login>
+    </div>
 
-    <form action="">
-      <input class="form-input" type="text">
-      <input class="form-input" type="text">
-      <input class="form-input" type="button" value="">
-    </form>
+    <ng-template #showRegistration>
+      <pivo-test-workspace-register></pivo-test-workspace-register>
+    </ng-template>
   </div>
-  <!-- End Form -->
+  <!-- Login & Registration End -->
 </div>
-
-<!-- <div *ngIf="isLogin; else showRegistration">
-  <pivo-test-workspace-login>
-    Awesome
-  </pivo-test-workspace-login>
-</div>
-
-<ng-template #showRegistration>
-  <pivo-test-workspace-register></pivo-test-workspace-register>
-</ng-template> -->
