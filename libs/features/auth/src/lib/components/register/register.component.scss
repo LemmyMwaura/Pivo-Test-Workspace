@@ -1,0 +1,51 @@
+.register-form {
+  display:flex;
+  flex-direction: column;
+  min-width: 300px;
+  gap: 1.5rem;
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__tooltip {
+    position: absolute;
+    font-size: 1.2rem;
+    top: 30%;
+    left: 0.8rem;
+    color: white;
+  }
+
+  &__input {
+    background: none;
+    outline: none;
+    border: 2px solid white;
+    padding: 0.5rem 0.5rem 0.5rem 3rem;
+    border-radius: 5px;
+    height: 3.5rem;
+    width: 100%;
+    font-size: 1rem;
+    color: white;
+
+    &::placeholder {
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: white;
+    }
+  }
+
+  &__btn-submit {
+    background-color: white;
+    height: 3.4rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #2449b8;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
