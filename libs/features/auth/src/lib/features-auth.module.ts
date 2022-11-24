@@ -1,18 +1,20 @@
+// modules
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthRoutingModule } from './features-auth-routing.module';
 
-//guards & services
+//guards & providers
 import { AuthService } from './providers/auth.service';
 import { IsLoggedIn } from './guards/auth.guard';
 
-//components
+//declarations
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthRoutingModule } from './features-auth-routing.module';
 import { AuthpageComponent } from './pages/authpage/authpage.component';
 
 @NgModule({
-  imports: [CommonModule, AuthRoutingModule],
+  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
   declarations: [LoginComponent, RegisterComponent, AuthpageComponent],
 })
 export class FeaturesAuthModule {

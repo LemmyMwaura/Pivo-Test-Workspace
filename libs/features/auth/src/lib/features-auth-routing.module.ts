@@ -12,8 +12,7 @@ export const authRoutes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-    ],
-    pathMatch: 'full',
+    ]
   },
 ];
 
