@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'pivo-test-workspace-login',
@@ -7,26 +9,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  accountForm!:FormGroup;
+  accountForm!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
-  getUser = () => "assets/images/User.png"
-
-  getLock = () => "assets/images/Lock.png"
+  userIcon = faUser;
+  lockIcon = faLock;
+  emailIcon = faEnvelope;
 
   loginFormGroup() {
     this.accountForm = this._formBuilder.group({
-      name: ['', Validators.required, Validators.minLength(4)],
-      password: ['', Validators.required, Validators.minLength(6)]
-    })
+      email: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(6)],
+    });
   }
 
-  onSubmit(){
-    console.log(this.accountForm.value)
+  onSubmit() {
+    console.log(this.accountForm.value);
   }
 
   ngOnInit(): void {
-    this.loginFormGroup()
+    this.loginFormGroup();
   }
 }

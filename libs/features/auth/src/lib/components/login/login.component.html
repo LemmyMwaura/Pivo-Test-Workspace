@@ -1,11 +1,11 @@
 <div class="login-wrapper">
   <form class="login-form" [formGroup]="accountForm" (ngSubmit)="onSubmit()" >
     <div class="login-form__input-wrapper">
-      <img class="login-form__tooltip" [src]="getUser()" alt="lock tooltip image">
-      <input class="login-form__input" formControlName="name" placeholder="username" type="text">
+      <fa-icon class="login-form__tooltip" [icon]="emailIcon"></fa-icon>
+      <input class="login-form__input" formControlName="email" placeholder="email" type="email">
     </div>
     <div class="login-form__input-wrapper">
-      <img class="login-form__tooltip" [src]="getUser()" alt="lock tooltip image">
+      <fa-icon class="login-form__tooltip" [icon]="lockIcon"></fa-icon>
       <input class="login-form__input" formControlName="password" placeholder="password" type="text">
     </div>
     <button class="login-form__btn-submit" type="submit" [disabled]="!accountForm.valid">

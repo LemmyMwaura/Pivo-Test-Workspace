@@ -10,13 +10,17 @@
 
   &__tooltip {
     position: absolute;
+    font-size: 1.2rem;
+    top: 30%;
+    left: 0.8rem;
+    color: white;
   }
 
   &__input {
     background: none;
     outline: none;
     border: 2px solid white;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 3rem;
     border-radius: 5px;
     height: 3.5rem;
     width: 100%;
