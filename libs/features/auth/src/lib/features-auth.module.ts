@@ -2,6 +2,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthRoutingModule } from './features-auth-routing.module';
 
 //guards & providers
@@ -14,7 +15,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthpageComponent } from './pages/authpage/authpage.component';
 
 @NgModule({
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+  ],
   declarations: [LoginComponent, RegisterComponent, AuthpageComponent],
 })
 export class FeaturesAuthModule {
