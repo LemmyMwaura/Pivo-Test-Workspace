@@ -1,29 +1,45 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, Optional, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { userActions } from '../store/actions/user.actions';
+
 import {
   Auth,
   signOut,
   updateProfile,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from '@angular/fire/auth';
 
-export interface User {
+interface User {
   uid: string;
   email: string;
   displayName?: string;
+  isLoggedIn: boolean;
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  protected userIsLoggedIn = false;
+export class AuthService implements OnDestroy {
+  protected userIsLoggedIn$!: Subscription;
 
-  constructor(@Optional() private _afAuth: Auth, private _router: Router) {}
+  constructor(
+    @Optional() private _afAuth: Auth,
+    private _store: Store<{ user: User }>,
+    private _router: Router
+  ) {
+    this.authStateListener();
+  }
 
   public isLoggedIn() {
-    return this.userIsLoggedIn;
+    this.userIsLoggedIn$ = this._store
+      .select((state) => state.user.isLoggedIn)
+      .subscribe();
+
+    return this.userIsLoggedIn$;
   }
 
   public async signIn(email: string, password: string) {
@@ -54,6 +70,23 @@ export class AuthService {
       });
   }
 
+  private authStateListener() {
+    onAuthStateChanged(this._afAuth, (user) => {
+      if (user) {
+        this._store.dispatch(
+          userActions.loginSuccess({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            isLoggedIn: true,
+          })
+        );
+      } else {
+        this._store.dispatch(userActions.logoutSuccess());
+      }
+    });
+  }
+
   public logOut() {
     signOut(this._afAuth);
     this._router.navigate(['/auth/login']);
@@ -61,5 +94,9 @@ export class AuthService {
 
   private _throwError(error: any) {
     console.log(error.message);
+  }
+
+  ngOnDestroy() {
+    this.userIsLoggedIn$.unsubscribe();
   }
 }
