@@ -12,8 +12,8 @@
   <div class="cart-container">
     <img class="cart" [src]="getCart()" alt="cart-image" />
     <div class="cart__toggle-menu">
-      <button class="toogle-btn" (click)="showLogin()" >Login</button>
-      <button class="toogle-btn" (click)="showSignUp()">Sign Up</button>
+      <button class="btn toogle-btn" (click)="showLogin()" >Login</button>
+      <button class="btn toogle-btn" (click)="showSignUp()">Sign Up</button>
     </div>
     <div *ngIf="isLoginPage; else showRegistration">
       <pivo-test-workspace-login></pivo-test-workspace-login>

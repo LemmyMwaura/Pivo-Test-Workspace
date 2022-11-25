@@ -15,7 +15,7 @@
         Password should be 6 characters minimum
       </div>
     </div>
-    <button class="login-form__btn-submit" type="submit" [disabled]="loginForm.valid">
+    <button class="login-form__btn-submit" type="submit" [disabled]="!loginForm.valid">
       LogIn
     </button>
   </form>

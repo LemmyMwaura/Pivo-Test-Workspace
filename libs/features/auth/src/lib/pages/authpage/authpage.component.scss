@@ -39,16 +39,9 @@
       gap:2rem;
 
       .toogle-btn {
-        border:none;
-        outline: none;
-        cursor: pointer;
         background: white;
         padding: 0.5rem 1rem;
         border-radius: 5px;
-
-        &:active{
-          transform: scale(0.98);
-        }
       }
     }
   }
