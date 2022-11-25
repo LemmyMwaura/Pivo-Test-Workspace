@@ -1,6 +1,12 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Injectable, Optional } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  Auth,
+  signOut,
+  updateProfile,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from '@angular/fire/auth';
 
 export interface User {
   uid: string;
@@ -12,28 +18,45 @@ export interface User {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private _afAuth: AngularFireAuth,
-    private _afs: AngularFirestore
-  ) {}
+  protected userIsLoggedIn = false;
+
+  constructor(@Optional() private _afAuth: Auth, private _router: Router) {}
 
   public isLoggedIn() {
-    return true
+    return this.userIsLoggedIn;
   }
 
-  public createUserWithEmailAndPassword(
-    displayName: string,
-    email: string,
-    password: string
-  ) {
-    return this._afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        return res.user;
+  public async signIn(email: string, password: string) {
+    return await signInWithEmailAndPassword(this._afAuth, email, password)
+      .then(() => {
+        this._router.navigate(['/home']);
       })
       .catch((error) => {
         this._throwError(error);
       });
+  }
+
+  public async createAccount(
+    displayName: string,
+    email: string,
+    password: string
+  ) {
+    return await createUserWithEmailAndPassword(this._afAuth, email, password)
+      .then((res) => {
+        updateProfile(res.user, {
+          displayName: displayName,
+        }).then(() => {
+          this._router.navigate(['/home']);
+        });
+      })
+      .catch((error) => {
+        this._throwError(error);
+      });
+  }
+
+  public logOut() {
+    signOut(this._afAuth);
+    this._router.navigate(['/auth/login']);
   }
 
   private _throwError(error: any) {
