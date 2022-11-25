@@ -4,6 +4,7 @@ export interface User {
   uid: string | null;
   email: string | null;
   displayName: string | null;
+  isLoggedIn: boolean;
 }
 
 export const userActions = createActionGroup({
