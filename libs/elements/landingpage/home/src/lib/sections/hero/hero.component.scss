@@ -1,3 +1,140 @@
-.home-wrapper{
-  background-image: url('');
+.hero {
+  &-wrapper {
+    display: grid;
+    place-content: center;
+    position: relative;
+
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      max-width: 1300px;
+      min-width: 80vw;
+    }
+  }
+
+  &-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 50%;
+
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+  }
+}
+
+.nav {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1300px;
+  width: 100%;
+
+  &--first,
+  &--middle,
+  &--last {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: #505f98;
+  }
+
+  &--first {
+    gap: 1.5rem;
+
+    .item {
+      font-size: 1rem;
+      font-weight: normal;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 1000px) {
+      gap: 0.5rem;
+    }
+  }
+
+  &--middle {
+    font-weight: bold;
+    color: #37447e;
+  }
+
+  &--last {
+    z-index: 5;
+
+    &.buy_btn {
+      width: 12rem;
+      border-radius: 2px;
+      background-color: #111b47;
+      color: white;
+
+      @media screen and (max-width: 1000px) {
+        width: 6rem;
+      }
+    }
+  }
+}
+
+.hero-section {
+  display: grid;
+  align-items: center;
+  justify-self: left;
+  height: 100vh;
+  max-width: 1300px;
+
+  .hero-container {
+    padding: 0.5rem 1rem;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 5;
+
+    @media screen and (max-width: 600px) {
+      width: auto;
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #111b47;
+    letter-spacing: 1px;
+  }
+
+  &__content {
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  &__btns {
+    margin-top: 5rem;
+    display: flex;
+    gap: 1rem;
+
+    &--primary,
+    &--secondary {
+      padding: 0.5rem 1rem;
+      width: 12rem;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    &--primary {
+      background-color: #111b47;
+      color: white;
+    }
+
+    &--secondary {
+      background-color: white;
+      color: #111b47;
+      border: 1px solid #111b47;
+    }
+  }
 }

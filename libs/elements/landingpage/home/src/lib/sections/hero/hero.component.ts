@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
 })
-export class HeroComponent {}
+export class HeroComponent {
+  getBackImg = () => "assets/images/designer_1.png"
+}

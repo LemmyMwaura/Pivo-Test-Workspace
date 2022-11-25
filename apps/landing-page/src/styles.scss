@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

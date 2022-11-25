@@ -1,15 +1,36 @@
 <div class="hero-wrapper">
-  <nav>
-    <div class="first">
-      <h1>Home</h1>
-      <h1>About</h1>
-      <h1>Contact</h1>
-    </div>
-    <div class="middle">
-      <h3 class="middle__title">Landie</h3>
-    </div>
-    <div class="last">
-      <button class="btn last__btn">Buy Now</button>
-    </div>
-  </nav>
+  <img class="hero-background" [src]="getBackImg()" />
+  <div class="page-container">
+    <!-- Nav Section -->
+    <nav class="nav">
+      <div class="nav--first">
+        <h1 class="nav--first item">Home</h1>
+        <h1 class="nav--first item">About</h1>
+        <h1 class="nav--first item">Contact</h1>
+      </div>
+      <div class="nav--middle">
+        <h3 class="nav--middle title">Landie</h3>
+      </div>
+      <div class="nav--last">
+        <button class="btn nav--last buy_btn">Buy Now</button>
+      </div>
+    </nav>
+    <!-- End Nav -->
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <h1 class="hero-section__title">Introduce Your Product</h1>
+        <h1 class="hero-section__title">Quickly & Effectively</h1>
+        <p class="hero-section__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolorum
+          eligendi accusantium, omnis at, nemo non magni incidunt repellat tempore iure tempora, odio animi possimus!
+        </p>
+        <div class="hero-section__btns">
+          <button class="btn hero-section__btns--primary">Purchase UI Kit</button>
+          <button class="btn hero-section__btns--secondary">Learn More</button>
+        </div>
+      </div>
+    </section>
+    <!-- End Hero Section -->
+  </div>
 </div>
