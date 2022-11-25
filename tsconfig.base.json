@@ -18,6 +18,9 @@
       "@pivo-test-workspace/elements/form/home": [
         "libs/elements/form/home/src/index.ts"
       ],
+      "@pivo-test-workspace/elements/landingpage/home": [
+        "libs/elements/landingpage/home/src/index.ts"
+      ],
       "@pivo-test-workspace/features/auth": ["libs/features/auth/src/index.ts"]
     }
   },
