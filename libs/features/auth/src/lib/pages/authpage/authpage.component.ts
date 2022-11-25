@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pivo-test-workspace-authpage',
@@ -6,7 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./authpage.component.scss'],
 })
 export class AuthpageComponent {
-  isLogin = true
+  isLoginPage = true
+
+  constructor(private _router: Router) {}
+
+  showLogin () {
+    this.isLoginPage=true
+    this._router.navigate(['/auth/login'])
+  }
+
+  showSignUp () {
+    this.isLoginPage=false
+    this._router.navigate(['/auth/register'])
+  }
 
   getVector = () => "assets/images/Vector.png"
   getCart = () => "assets/images/Cart.png"

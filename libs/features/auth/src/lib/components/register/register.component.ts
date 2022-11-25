@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../providers/auth.service';
+
+// icons
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -11,7 +14,10 @@ import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService
+  ) {}
 
   userIcon = faUser;
   lockIcon = faLock;
@@ -38,7 +44,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
+    const user = {
+      name: this.registerForm.value.name,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+    };
+
+    this._authService.createAccount(user.name, user.email, user.password);
   }
 
   ngOnInit(): void {

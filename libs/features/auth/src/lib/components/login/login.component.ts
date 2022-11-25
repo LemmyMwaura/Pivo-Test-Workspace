@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../providers/auth.service';
+
+//tooltips
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -11,7 +14,10 @@ import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService
+  ) {}
 
   userIcon = faUser;
   lockIcon = faLock;
@@ -33,7 +39,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
+    const user = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+    };
+
+    this._authService.signIn(user.email, user.password)
   }
 
   ngOnInit(): void {

@@ -26,8 +26,31 @@
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    gap: 4rem;
+    gap: 1rem;
     height: 100%;
     z-index: 5;
+
+    .cart {
+      margin-bottom:4rem;
+    }
+    
+    .cart__toggle-menu {
+      display:flex;
+      gap:2rem;
+
+      .toogle-btn {
+        border:none;
+        outline: none;
+        cursor: pointer;
+        background: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+
+        &:active{
+          transform: scale(0.98);
+        }
+      }
+    }
   }
 }
+ 
