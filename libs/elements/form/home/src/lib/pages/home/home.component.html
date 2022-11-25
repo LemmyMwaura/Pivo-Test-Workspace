@@ -1,1 +1,14 @@
-<p>home works!</p>
+<!-- Home Section -->
+<div class="home-wrapper">
+  <div class="home-content">
+    <fa-icon class="home-content__tooltip" [icon]="userIcon"></fa-icon>
+    <div class="home-user">
+      <span class="home-user__greet">Welcome</span> 
+      <span class="home-user__name">
+        {{ userName$ | async }}
+      </span>
+    </div>
+    <button class="btn home-btn" (click)="logOut()">LogOut</button>
+  </div>
+</div>
+<!-- End Home -->
