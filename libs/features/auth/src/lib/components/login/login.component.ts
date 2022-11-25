@@ -9,7 +9,7 @@ import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  accountForm!: FormGroup;
+  loginForm!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -18,14 +18,22 @@ export class LoginComponent implements OnInit {
   emailIcon = faEnvelope;
 
   loginFormGroup() {
-    this.accountForm = this._formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required, Validators.minLength(6)],
+    this.loginForm = this._formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
   onSubmit() {
-    console.log(this.accountForm.value);
+    console.log(this.loginForm.value);
   }
 
   ngOnInit(): void {

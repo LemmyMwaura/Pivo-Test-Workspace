@@ -1,19 +1,30 @@
+<!-- Reg Section -->
 <div class="register-wrapper">
   <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
     <div class="register-form__input-wrapper">
       <fa-icon class="register-form__tooltip" [icon]="userIcon"></fa-icon>
       <input class="register-form__input" formControlName="name" placeholder="username" type="text">
+      <div class="register-form__error-message" *ngIf="name?.dirty && name?.invalid && name?.touched">
+        Username should be 4 characters minimum
+      </div>
     </div>
     <div class="register-form__input-wrapper">
       <fa-icon class="register-form__tooltip" [icon]="emailIcon"></fa-icon>
       <input class="register-form__input" formControlName="email" placeholder="email" type="email">
+      <div class="register-form__error-message" *ngIf="email?.invalid && email?.touched">
+        Email is required
+      </div>
     </div>
     <div class="register-form__input-wrapper">
       <fa-icon class="register-form__tooltip" [icon]="lockIcon"></fa-icon>
       <input class="register-form__input" formControlName="password" placeholder="password" type="password">
+      <div class="register-form__error-message" *ngIf="password?.invalid && password?.touched">
+        Password should be 6 characters minimum
+      </div>
     </div>
     <button class="register-form__btn-submit" type="submit" [disabled]="!registerForm.valid">
       Sign Up
     </button>
   </form>
 </div>
+<!-- End RegSection -->

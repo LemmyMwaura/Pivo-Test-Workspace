@@ -1,15 +1,23 @@
+<!-- Login section -->
 <div class="login-wrapper">
-  <form class="login-form" [formGroup]="accountForm" (ngSubmit)="onSubmit()" >
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="login-form__input-wrapper">
       <fa-icon class="login-form__tooltip" [icon]="emailIcon"></fa-icon>
       <input class="login-form__input" formControlName="email" placeholder="email" type="email">
+      <div class="login-form__error-message" *ngIf="email?.invalid && email?.touched">
+        Email is required
+      </div>
     </div>
     <div class="login-form__input-wrapper">
       <fa-icon class="login-form__tooltip" [icon]="lockIcon"></fa-icon>
       <input class="login-form__input" formControlName="password" placeholder="password" type="password">
+      <div class="login-form__error-message" *ngIf="password?.invalid && password?.touched">
+        Password should be 6 characters minimum
+      </div>
     </div>
-    <button class="login-form__btn-submit" type="submit" [disabled]="!accountForm.valid">
+    <button class="login-form__btn-submit" type="submit" [disabled]="loginForm.valid">
       LogIn
     </button>
   </form>
 </div>
+<!-- End Section -->
