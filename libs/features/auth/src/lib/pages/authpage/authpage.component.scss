@@ -10,7 +10,6 @@
     right: 0;
     height: 100%;
     width: 70%;
-    z-index: -1;
   }
 
   .ellipse {
@@ -31,6 +30,7 @@
     z-index: 5;
 
     .cart {
+      z-index: 5;
       margin-bottom:4rem;
     }
     
@@ -42,6 +42,7 @@
         background: white;
         padding: 0.5rem 1rem;
         border-radius: 5px;
+        z-index: 5;
       }
     }
   }
