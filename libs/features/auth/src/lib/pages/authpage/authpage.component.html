@@ -1,4 +1,9 @@
 <div class="wrapper">
+  <!-- Alert Modal -->
+  <pivo-test-workspace-alert-modal *ngIf="message">
+  </pivo-test-workspace-alert-modal>
+  <!-- End Alert Modal -->
+
   <!-- Background -->
   <img class="vector" [src]="getVector()" alt="vector-image">
   <div class="ellipse">
@@ -12,7 +17,7 @@
   <div class="cart-container">
     <img class="cart" [src]="getCart()" alt="cart-image" />
     <div class="cart__toggle-menu">
-      <button class="btn toogle-btn" (click)="showLogin()" >Login</button>
+      <button class="btn toogle-btn" (click)="showLogin()">Login</button>
       <button class="btn toogle-btn" (click)="showSignUp()">Sign Up</button>
     </div>
     <div *ngIf="isLoginPage; else showRegistration">

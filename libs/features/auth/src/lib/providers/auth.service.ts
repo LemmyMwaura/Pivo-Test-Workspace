@@ -13,6 +13,8 @@ import {
   createUserWithEmailAndPassword,
 } from '@angular/fire/auth';
 
+import { ShowModalService } from './show-modal.service';
+
 interface User {
   uid: string;
   email: string;
@@ -29,7 +31,8 @@ export class AuthService implements OnDestroy {
   constructor(
     @Optional() private _afAuth: Auth,
     private _store: Store<{ user: User }>,
-    private _router: Router
+    private _router: Router,
+    private _modal: ShowModalService
   ) {
     this.authStateListener();
   }
@@ -46,6 +49,7 @@ export class AuthService implements OnDestroy {
     return await signInWithEmailAndPassword(this._afAuth, email, password)
       .then(() => {
         this._router.navigate(['/home']);
+        this._modal.emitMessage('Welcome Back');
       })
       .catch((error) => {
         this._throwError(error);
@@ -63,6 +67,7 @@ export class AuthService implements OnDestroy {
           displayName: displayName,
         }).then(() => {
           this._router.navigate(['/home']);
+          this._modal.emitMessage('Account Created Welcome');
         });
       })
       .catch((error) => {
@@ -90,10 +95,11 @@ export class AuthService implements OnDestroy {
   public logOut() {
     signOut(this._afAuth);
     this._router.navigate(['/auth/login']);
+    this._modal.emitMessage('Logout Successful');
   }
 
   private _throwError(error: any) {
-    console.log(error.message);
+    this._modal.emitMessage(error.message)
   }
 
   ngOnDestroy() {

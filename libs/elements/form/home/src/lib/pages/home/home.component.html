@@ -1,5 +1,11 @@
 <!-- Home Section -->
 <div class="home-wrapper">
+  
+    <!-- Alert Modal -->
+    <pivo-test-workspace-alert-modal *ngIf="message">
+    </pivo-test-workspace-alert-modal>
+    <!-- End Alert Modal -->
+
   <div class="home-content">
     <fa-icon class="home-content__tooltip" [icon]="userIcon"></fa-icon>
     <div class="home-user">
