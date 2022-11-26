@@ -14,14 +14,9 @@ import {
 } from '@angular/fire/auth';
 
 import { ShowModalService } from './show-modal.service';
+import { AppState } from '@pivo-test-workspace/models';
 
-interface User {
-  uid: string;
-  email: string;
-  displayName?: string;
-  isLoggedIn: boolean;
-}
-
+/* Service that handles all the authentication logic for the app */
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +25,7 @@ export class AuthService implements OnDestroy {
 
   constructor(
     @Optional() private _afAuth: Auth,
-    private _store: Store<{ user: User }>,
+    private _store: Store<AppState>,
     private _router: Router,
     private _modal: ShowModalService
   ) {
