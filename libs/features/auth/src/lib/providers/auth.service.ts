@@ -49,7 +49,9 @@ export class AuthService implements OnDestroy {
     return await signInWithEmailAndPassword(this._afAuth, email, password)
       .then(() => {
         this._router.navigate(['/home']);
-        this._modal.emitMessage('Welcome Back');
+        setTimeout(() => {
+          this._modal.emitMessage('Welcome Back');
+        }, 100)
       })
       .catch((error) => {
         this._throwError(error);
@@ -67,7 +69,9 @@ export class AuthService implements OnDestroy {
           displayName: displayName,
         }).then(() => {
           this._router.navigate(['/home']);
-          this._modal.emitMessage('Account Created, Welcome');
+          setTimeout(() => {
+            this._modal.emitMessage('Account Created, Welcome');
+          }, 100)
         });
       })
       .catch((error) => {
@@ -95,6 +99,9 @@ export class AuthService implements OnDestroy {
   public logOut() {
     signOut(this._afAuth);
     this._router.navigate(['/auth/login']);
+    setTimeout(() => {
+      this._modal.emitMessage('Successfuly Logged Out');
+    }, 100)
   }
 
   private _throwError(error: any) {
