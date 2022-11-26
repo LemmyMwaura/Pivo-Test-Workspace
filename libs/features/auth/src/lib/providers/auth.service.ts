@@ -49,9 +49,7 @@ export class AuthService implements OnDestroy {
     return await signInWithEmailAndPassword(this._afAuth, email, password)
       .then(() => {
         this._router.navigate(['/home']);
-        setTimeout(() => {
-          this._modal.emitMessage('Welcome Back');
-        }, 100)
+        this._sendMessage('Welcome Back');
       })
       .catch((error) => {
         this._throwError(error);
@@ -68,10 +66,9 @@ export class AuthService implements OnDestroy {
         updateProfile(res.user, {
           displayName: displayName,
         }).then(() => {
+          this._updateState(res.user.uid, res.user.email, displayName);
           this._router.navigate(['/home']);
-          setTimeout(() => {
-            this._modal.emitMessage('Account Created, Welcome');
-          }, 100)
+          this._sendMessage(`Account Created, Welcome ${displayName}`);
         });
       })
       .catch((error) => {
@@ -82,14 +79,7 @@ export class AuthService implements OnDestroy {
   private authStateListener() {
     onAuthStateChanged(this._afAuth, (user) => {
       if (user) {
-        this._store.dispatch(
-          userActions.loginSuccess({
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            isLoggedIn: true,
-          })
-        );
+        this._updateState(user.uid, user.email, user.displayName);
       } else {
         this._store.dispatch(userActions.logoutSuccess());
       }
@@ -99,13 +89,28 @@ export class AuthService implements OnDestroy {
   public logOut() {
     signOut(this._afAuth);
     this._router.navigate(['/auth/login']);
-    setTimeout(() => {
-      this._modal.emitMessage('Successfuly Logged Out');
-    }, 100)
+    this._sendMessage('Successfuly Logged Out');
+  }
+
+  private _updateState(id: string, email: string | null, name: string | null) {
+    this._store.dispatch(
+      userActions.loginSuccess({
+        uid: id,
+        email: email,
+        displayName: name,
+        isLoggedIn: true,
+      })
+    );
   }
 
   private _throwError(error: any) {
-    this._modal.emitMessage(error.message)
+    this._modal.emitMessage(error.message);
+  }
+
+  private _sendMessage(message: string) {
+    setTimeout(() => {
+      this._modal.emitMessage(message);
+    }, 0);
   }
 
   ngOnDestroy() {
