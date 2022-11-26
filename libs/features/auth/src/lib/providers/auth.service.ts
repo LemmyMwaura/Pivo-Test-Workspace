@@ -2,7 +2,7 @@ import { Injectable, Optional, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { userActions } from '../store/actions/user.actions';
+import { userActions } from '@pivo-test-workspace/state';
 
 import {
   Auth,

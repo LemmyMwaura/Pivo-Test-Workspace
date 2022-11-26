@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store'
 import { AppRoutingModule } from './app-routing.module';
 
 //reducers
-import { userReducer } from '@pivo-test-workspace/features/auth'
+import { userReducer } from '@pivo-test-workspace/state';
 
 //declarations
 import { AppComponent } from './app.component';

@@ -22,7 +22,8 @@
         "libs/elements/landingpage/home/src/index.ts"
       ],
       "@pivo-test-workspace/features/auth": ["libs/features/auth/src/index.ts"],
-      "@pivo-test-workspace/models": ["libs/models/src/index.ts"]
+      "@pivo-test-workspace/models": ["libs/models/src/index.ts"],
+      "@pivo-test-workspace/state": ["libs/state/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

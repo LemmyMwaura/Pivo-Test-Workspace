@@ -3,7 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ModelsModule } from '@pivo-test-workspace/models';
 import { AuthRoutingModule } from './features-auth-routing.module';
 
 //guards & providers
@@ -21,8 +20,7 @@ import { AlertModalComponent } from './modals/alert-modal/alert-modal.component'
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
-    ModelsModule
+    FontAwesomeModule
   ],
   declarations: [
     LoginComponent,
