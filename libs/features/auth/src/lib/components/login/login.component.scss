@@ -13,47 +13,43 @@
     font-size: 1.2rem;
     top: 30%;
     left: 0.8rem;
-    color: white;
+    color: var(--form-to-code-white);
   }
 
   &__input {
     background: none;
     outline: none;
-    border: 2px solid white;
+    border: 2px solid var(--form-to-code-white);
     padding: 0.5rem 0.5rem 0.5rem 3rem;
     border-radius: 5px;
     height: 3.5rem;
     width: 100%;
     z-index: 5;
     font-size: 1rem;
-    color: white;
+    color: var(--form-to-code-white);
 
     &::placeholder {
       font-size: 1rem;
       text-transform: uppercase;
-      color: white;
+      color: var(--form-to-code-white);
     }
   }
 
   &__error-message {
     margin-top: 0.1rem;
     font-size: 1rem;
-    color: orange;
+    color: var(--form-to-code-error);
   }
 
   &__btn-submit {
-    background-color: white;
+    background-color: var(--form-to-code-white);
     height: 3.4rem;
     border-radius: 5px;
-    color: #2449b8;
+    color: var(--form-to-code-light-blue);
     font-size: 1.2rem;
     font-weight: bold;
     z-index: 5;
     text-transform: uppercase;
-    box-shadow: 0px 2px 5px -1.5px black;
-
-    &:active {
-      transform: scale(0.98);
-    }
+    box-shadow: 0px 2px 5px -1.5px var(--form-to-code-black);
   }
 }

@@ -1,6 +1,6 @@
 .home {
   &-wrapper {
-    background: #2449b8;
+    background: var(--form-to-code-light-blue);
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -14,7 +14,7 @@
     &__tooltip {
       justify-self: center;
       font-size: 5rem;
-      color: white;
+      color: var(--form-to-code-white);
     }
   }
 
@@ -25,21 +25,21 @@
     &__greet {
       font-size: 2rem;
       font-weight: bold;
-      color: black;
+      color: var(--form-to-code-black);
     }
 
     &__name {
       font-size: 2rem;
       font-weight: bold;
-      color: white;
+      color: var(--form-to-code-white);
     }
   }
 
   &-btn {
-    background-color: white;
+    background-color: var(--form-to-code-white);
     border-radius: 5px;
     padding: 1rem;
-    color: black;
+    color: var(--form-to-code-black);
     font-size: 1.2rem;
     font-weight: bold;
   }

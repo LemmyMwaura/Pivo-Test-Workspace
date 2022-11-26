@@ -1,6 +1,6 @@
 .wrapper {
   position: relative;
-  background-color: #2449b8;
+  background-color: var(--form-to-code-light-blue);
   height: 100vh;
   overflow: hidden;
 
@@ -39,7 +39,7 @@
       gap:2rem;
 
       .toogle-btn {
-        background: white;
+        background: var(--form-to-code-white);
         padding: 0.5rem 1rem;
         border-radius: 5px;
         z-index: 5;

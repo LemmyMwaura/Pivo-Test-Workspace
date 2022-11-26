@@ -41,7 +41,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.5rem 1rem;
-    color: #505f98;
+    color: var( --landingpage-light-light-blue);
   }
 
   &--first {
@@ -60,7 +60,7 @@
 
   &--middle {
     font-weight: bold;
-    color: #37447e;
+    color: var(--landingpage-light-blue);
   }
 
   &--last {
@@ -69,8 +69,8 @@
     &.buy_btn {
       width: 12rem;
       border-radius: 2px;
-      background-color: #111b47;
-      color: white;
+      background-color: var(--landingpage-deep-blue);
+      color: var(--landingpage-white);
 
       @media screen and (max-width: 1000px) {
         width: 6rem;
@@ -102,7 +102,7 @@
   &__title {
     font-size: 2.5rem;
     font-weight: 500;
-    color: #111b47;
+    color: var(--landingpage-deep-blue);
     letter-spacing: 1px;
   }
 
@@ -127,14 +127,14 @@
     }
 
     &--primary {
-      background-color: #111b47;
-      color: white;
+      background-color: var(--landingpage-deep-blue);
+      color: var(--landingpage-white);
     }
 
     &--secondary {
-      background-color: white;
-      color: #111b47;
-      border: 1px solid #111b47;
+      background-color: var(--landingpage-white);
+      color: var(--landingpage-deep-blue);
+      border: 1px solid var(--landingpage-deep-blue);
     }
   }
 }
