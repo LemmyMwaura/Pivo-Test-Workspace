@@ -12,6 +12,7 @@
     width: 100%;
     max-width: 1300px;
     min-width: 80vw;
+    min-height: 100vh;
 
     @media screen and (max-width: 1200px) {
       grid-template-rows: 1fr 1fr;
