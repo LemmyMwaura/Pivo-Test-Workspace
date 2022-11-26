@@ -1,6 +1,6 @@
 <div class="wrapper">
   <!-- Alert Modal -->
-  <pivo-test-workspace-alert-modal *ngIf="message">
+  <pivo-test-workspace-alert-modal [message]="message" *ngIf="messageSub$ | async as message">
   </pivo-test-workspace-alert-modal>
   <!-- End Alert Modal -->
 

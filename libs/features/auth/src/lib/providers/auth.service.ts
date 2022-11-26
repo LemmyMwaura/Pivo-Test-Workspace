@@ -67,7 +67,7 @@ export class AuthService implements OnDestroy {
           displayName: displayName,
         }).then(() => {
           this._router.navigate(['/home']);
-          this._modal.emitMessage('Account Created Welcome');
+          this._modal.emitMessage('Account Created, Welcome');
         });
       })
       .catch((error) => {
@@ -95,7 +95,6 @@ export class AuthService implements OnDestroy {
   public logOut() {
     signOut(this._afAuth);
     this._router.navigate(['/auth/login']);
-    this._modal.emitMessage('Logout Successful');
   }
 
   private _throwError(error: any) {

@@ -1,6 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   AuthService,
   ShowModalService,
@@ -8,33 +8,28 @@ import {
 
 //tooltips
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+
 @Component({
   selector: 'pivo-test-workspace-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent {
   userName$;
   userIcon = faUser;
-  message: string | null = null;
-  messageSub$: Subscription;
+  messageSub$: Observable<string | null>;
+  @Input() message!: string | null;
 
   constructor(
     private _authService: AuthService,
     private _modal: ShowModalService,
     private _store: Store<{ user: any }>
   ) {
-    this.messageSub$ = this._modal.messageToEmit.subscribe((data) => {
-      this.message = data;
-    });
     this.userName$ = this._store.select((state) => state.user.displayName);
+    this.messageSub$ = this._modal.messageToEmit;
   }
 
   logOut() {
     this._authService.logOut();
-  }
-
-  ngOnDestroy() {
-    this.messageSub$.unsubscribe();
   }
 }

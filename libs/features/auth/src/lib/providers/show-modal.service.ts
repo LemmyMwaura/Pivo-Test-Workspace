@@ -1,10 +1,12 @@
 
 import { Injectable, EventEmitter } from '@angular/core';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ShowModalService {
-  messageToEmit = new EventEmitter<string | null>(true);
+  message!:string | null
+  messageToEmit = new EventEmitter<string | null>();
 
   emitMessage(value:string | null) {
     this.messageToEmit.emit(value);

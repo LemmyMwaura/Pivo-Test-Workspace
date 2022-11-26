@@ -1,6 +1,6 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ShowModalService } from '../../providers/show-modal.service';
 
 @Component({
@@ -8,15 +8,13 @@ import { ShowModalService } from '../../providers/show-modal.service';
   templateUrl: './authpage.component.html',
   styleUrls: ['./authpage.component.scss'],
 })
-export class AuthpageComponent implements OnDestroy {
+export class AuthpageComponent {
   isLoginPage = true;
-  messageSub$: Subscription;
+  messageSub$: Observable<string | null>;
   message: string | null = null;
 
   constructor(private _router: Router, private _modal: ShowModalService) {
-    this.messageSub$ = this._modal.messageToEmit.subscribe((data) => {
-      this.message = data;
-    });
+    this.messageSub$ = this._modal.messageToEmit;
   }
 
   showLogin() {
@@ -35,7 +33,4 @@ export class AuthpageComponent implements OnDestroy {
   getEllipseSmaller = () => 'assets/images/Ellipse-1.png';
   getEllipseSmallest = () => 'assets/images/Ellipse-2.png';
 
-  ngOnDestroy() {
-    this.messageSub$.unsubscribe()
-  }
 }

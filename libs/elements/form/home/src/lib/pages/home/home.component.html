@@ -1,15 +1,15 @@
 <!-- Home Section -->
 <div class="home-wrapper">
-  
-    <!-- Alert Modal -->
-    <pivo-test-workspace-alert-modal *ngIf="message">
-    </pivo-test-workspace-alert-modal>
-    <!-- End Alert Modal -->
+
+  <!-- Alert Modal -->
+  <pivo-test-workspace-alert-modal *ngIf="messageSub$ | async as message" [message]="message">
+  </pivo-test-workspace-alert-modal>
+  <!-- End Alert Modal -->
 
   <div class="home-content">
     <fa-icon class="home-content__tooltip" [icon]="userIcon"></fa-icon>
     <div class="home-user">
-      <span class="home-user__greet">Welcome</span> 
+      <span class="home-user__greet">Welcome</span>
       <span class="home-user__name">
         {{ userName$ | async }}
       </span>

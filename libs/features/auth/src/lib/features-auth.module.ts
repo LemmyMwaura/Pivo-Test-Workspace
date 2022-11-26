@@ -28,7 +28,7 @@ import { AlertModalComponent } from './modals/alert-modal/alert-modal.component'
     AuthpageComponent,
     AlertModalComponent,
   ],
-  exports: [AlertModalComponent]
+  exports: [AlertModalComponent],
 })
 export class FeaturesAuthModule {
   static forRoot(): ModuleWithProviders<FeaturesAuthModule> {
