@@ -13,6 +13,7 @@ import { IsLoggedIn } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthpageComponent } from './pages/authpage/authpage.component';
+import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,13 @@ import { AuthpageComponent } from './pages/authpage/authpage.component';
     ReactiveFormsModule,
     FontAwesomeModule,
   ],
-  declarations: [LoginComponent, RegisterComponent, AuthpageComponent],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    AuthpageComponent,
+    AlertModalComponent,
+  ],
+  exports: [AlertModalComponent]
 })
 export class FeaturesAuthModule {
   static forRoot(): ModuleWithProviders<FeaturesAuthModule> {
