@@ -86,6 +86,7 @@ export class AuthService implements OnDestroy {
   public logOut() {
     signOut(this._afAuth).then(() => {
       this._router.navigate(['/auth/login']);
+      this._store.dispatch(userActions.logoutSuccess())
       this._sendMessage('Successfuly Logged Out');
     });
   }
