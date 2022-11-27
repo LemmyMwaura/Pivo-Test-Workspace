@@ -28,7 +28,7 @@ export class AuthService implements OnDestroy {
     private _store: Store<AppState>,
     private _router: Router,
     private _modal: ShowModalService
-  ) {}
+  ) { this.authStateListener() }
 
   public isLoggedIn() {
     this.userIsLoggedIn$ = this._store
@@ -73,8 +73,7 @@ export class AuthService implements OnDestroy {
       });
   }
 
-  public authStateListener() {
-    // We call this in our main app component since this module is lazy loaded
+  private authStateListener() {
     onAuthStateChanged(this._afAuth, (user) => {
       if (user) {
         this._updateState(user.uid, user.email, user.displayName);
