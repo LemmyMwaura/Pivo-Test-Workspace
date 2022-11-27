@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
   AuthService,
   ShowModalService,
 } from '@pivo-test-workspace/features/auth';
+import { AppState, Message } from '@pivo-test-workspace/models';
 
 //tooltips
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -17,13 +18,13 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 export class HomeComponent {
   userName$;
   userIcon = faUser;
-  messageSub$: Observable<string | null>;
-  @Input() message!: string | null;
+  messageSub$: Observable<Message>;
+  message!: Message;
 
   constructor(
     private _authService: AuthService,
     private _modal: ShowModalService,
-    private _store: Store<{ user: any }>
+    private _store: Store<AppState>
   ) {
     this.userName$ = this._store.select((state) => state.user.displayName);
     this.messageSub$ = this._modal.messageToEmit;

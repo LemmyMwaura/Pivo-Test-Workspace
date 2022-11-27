@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ShowModalService } from '../../providers/show-modal.service';
+import { Message } from '@pivo-test-workspace/models';
 
 @Component({
   selector: 'pivo-test-workspace-authpage',
@@ -10,8 +11,8 @@ import { ShowModalService } from '../../providers/show-modal.service';
 })
 export class AuthpageComponent {
   isLoginPage = true;
-  messageSub$: Observable<string | null>;
-  message: string | null = null;
+  messageSub$: Observable<Message>;
+  message: Message = null;
 
   constructor(private _router: Router, private _modal: ShowModalService) {
     this.messageSub$ = this._modal.messageToEmit;
