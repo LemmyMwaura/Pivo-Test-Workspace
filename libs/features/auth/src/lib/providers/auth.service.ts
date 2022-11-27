@@ -28,9 +28,7 @@ export class AuthService implements OnDestroy {
     private _store: Store<AppState>,
     private _router: Router,
     private _modal: ShowModalService
-  ) {
-    this.authStateListener();
-  }
+  ) {}
 
   public isLoggedIn() {
     this.userIsLoggedIn$ = this._store
@@ -60,18 +58,23 @@ export class AuthService implements OnDestroy {
       .then((res) => {
         updateProfile(res.user, {
           displayName: displayName,
-        }).then(() => {
-          this._updateState(res.user.uid, res.user.email, displayName);
-          this._router.navigate(['/home']);
-          this._sendMessage(`Account Created, Welcome ${displayName}`);
-        });
+        })
+          .then(() => {
+            this._updateState(res.user.uid, res.user.email, displayName);
+            this._router.navigate(['/home']);
+            this._sendMessage(`Account Created, Welcome ${displayName}`);
+          })
+          .catch((error) => {
+            this._throwError(error);
+          });
       })
       .catch((error) => {
         this._throwError(error);
       });
   }
 
-  private authStateListener() {
+  public authStateListener() {
+    // We call this in our main app component since this module is lazy loaded
     onAuthStateChanged(this._afAuth, (user) => {
       if (user) {
         this._updateState(user.uid, user.email, user.displayName);
@@ -82,9 +85,10 @@ export class AuthService implements OnDestroy {
   }
 
   public logOut() {
-    signOut(this._afAuth);
-    this._router.navigate(['/auth/login']);
-    this._sendMessage('Successfuly Logged Out');
+    signOut(this._afAuth).then(() => {
+      this._router.navigate(['/auth/login']);
+      this._sendMessage('Successfuly Logged Out');
+    });
   }
 
   private _updateState(id: string, email: string | null, name: string | null) {
