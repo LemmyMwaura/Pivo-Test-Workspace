@@ -9,7 +9,7 @@ export class IsLoggedIn implements CanActivate {
   constructor(private _authService: AuthService, private _router: Router) {}
 
   canActivate() {
-    if (this._authService.isLoggedIn()) {
+    if (this._authService.isLoggedIn() == true) {
       return true;
     } else {
       this._router.navigate(['/auth/login']);

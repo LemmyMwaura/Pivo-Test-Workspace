@@ -1,7 +1,6 @@
-import { Injectable, Optional, OnDestroy } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
 import { userActions } from '@pivo-test-workspace/state';
 
 import {
@@ -20,8 +19,8 @@ import { AppState } from '@pivo-test-workspace/models';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements OnDestroy {
-  protected userIsLoggedIn$!: Subscription;
+export class AuthService {
+  protected userIsLoggedIn = false;
 
   constructor(
     @Optional() private _afAuth: Auth,
@@ -31,16 +30,13 @@ export class AuthService implements OnDestroy {
   ) { this.authStateListener() }
 
   public isLoggedIn() {
-    this.userIsLoggedIn$ = this._store
-      .select((state) => state.user.isLoggedIn)
-      .subscribe();
-
-    return this.userIsLoggedIn$;
+    return this.userIsLoggedIn
   }
 
   public async signIn(email: string, password: string) {
     return await signInWithEmailAndPassword(this._afAuth, email, password)
       .then(() => {
+        this.userIsLoggedIn = true;
         this._router.navigate(['/home']);
         this._sendMessage('Welcome Back');
       })
@@ -61,6 +57,7 @@ export class AuthService implements OnDestroy {
         })
           .then(() => {
             this._updateState(res.user.uid, res.user.email, displayName);
+            this.userIsLoggedIn = true;
             this._router.navigate(['/home']);
             this._sendMessage(`Account Created, Welcome ${displayName}`);
           })
@@ -85,8 +82,8 @@ export class AuthService implements OnDestroy {
 
   public logOut() {
     signOut(this._afAuth).then(() => {
+      this.userIsLoggedIn = false
       this._router.navigate(['/auth/login']);
-      this._store.dispatch(userActions.logoutSuccess())
       this._sendMessage('Successfuly Logged Out');
     });
   }
@@ -97,7 +94,6 @@ export class AuthService implements OnDestroy {
         uid: id,
         email: email,
         displayName: name,
-        isLoggedIn: true,
       })
     );
   }
@@ -110,9 +106,5 @@ export class AuthService implements OnDestroy {
     setTimeout(() => {
       this._modal.emitMessage(message);
     }, 0);
-  }
-
-  ngOnDestroy() {
-    this.userIsLoggedIn$.unsubscribe();
   }
 }
